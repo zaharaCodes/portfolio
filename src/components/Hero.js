@@ -184,15 +184,15 @@ const Hero = () => {
               {/* Glow behind photo */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 blur-2xl opacity-20 rounded-3xl"></div>
 
-              {/* Square Photo - object-top to show full face */}
-              <div className="relative w-80 h-96 md:w-96 md:h-[420px] rounded-3xl overflow-hidden border-4 border-blue-500/50 shadow-2xl shadow-blue-500/20">
-                <img
-                  src="/images/Fathima Zahara.jpg"
-                  alt={info.name}
-                  className="w-full h-full object-cover object-top"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
-              </div>
+              {/* Full Photo - contain so whole image fits */}
+<div className="relative w-80 h-[500px] md:w-96 md:h-[540px] rounded-3xl overflow-hidden border-4 border-blue-500/50 shadow-2xl shadow-blue-500/20 bg-gray-900">
+  <img
+    src="/images/Fathima Zahara.jpg"
+    alt={info.name}
+    className="w-full h-full object-contain object-center"
+  />
+  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent pointer-events-none"></div>
+</div>
 
               {/* ONE Strong Quote Badge */}
               <motion.div
