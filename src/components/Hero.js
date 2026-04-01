@@ -3,17 +3,18 @@ import { motion } from 'framer-motion';
 import { FiGithub, FiLinkedin, FiMail, FiArrowDown } from 'react-icons/fi';
 import { info } from '../data/info';
 
+// Move roles OUTSIDE component to fix eslint error
+const roles = [
+  'Full Stack Developer',
+  'React Developer',
+  'Node.js Developer',
+  'UI/UX Enthusiast',
+];
+
 const Hero = () => {
   const [text, setText] = useState('');
   const [roleIndex, setRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-
-  const roles = [
-    'Full Stack Developer',
-    'React Developer',
-    'Node.js Developer',
-    'UI/UX Enthusiast',
-  ];
 
   useEffect(() => {
     const currentRole = roles[roleIndex];
@@ -53,7 +54,10 @@ const Hero = () => {
       {/* Background Effects */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div
+          className="absolute bottom-20 right-10 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"
+          style={{ animationDelay: '1s' }}
+        ></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-500/5 rounded-full blur-3xl"></div>
         <div
           className="absolute inset-0 opacity-[0.03]"
@@ -198,7 +202,6 @@ const Hero = () => {
                   alt={info.name}
                   className="w-full h-full object-cover object-top"
                 />
-                {/* Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
               </div>
 
