@@ -9,11 +9,10 @@ import Footer from './components/Footer';
 import Cursor from './components/Cursor';
 import './App.css';
 
-// Loading Screen Component
+// Loading Screen
 const Loader = () => (
   <div className="fixed inset-0 bg-gray-950 flex items-center justify-center z-[100]">
     <div className="text-center">
-      {/* Logo Animation */}
       <div className="relative mb-8">
         <div className="w-20 h-20 border-4 border-blue-500/20 rounded-full mx-auto"></div>
         <div className="w-20 h-20 border-4 border-transparent border-t-blue-500 rounded-full animate-spin absolute top-0 left-1/2 -translate-x-1/2"></div>
@@ -23,13 +22,9 @@ const Loader = () => (
           </span>
         </div>
       </div>
-      
-      {/* Loading Text */}
       <div className="text-gray-400 text-sm tracking-widest uppercase animate-pulse">
         Loading Portfolio...
       </div>
-      
-      {/* Progress Dots */}
       <div className="flex gap-2 justify-center mt-4">
         {[0, 1, 2, 3, 4].map((i) => (
           <div
@@ -48,21 +43,32 @@ const Loader = () => (
 
 function App() {
   const [loading, setLoading] = useState(true);
+  const [darkMode, setDarkMode] = useState(true); // ✅ ADD THIS
 
   useEffect(() => {
-    // Simulate loading time
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2500);
     return () => clearTimeout(timer);
   }, []);
 
+  // ✅ ADD THIS - applies dark class to html element
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
+
   if (loading) return <Loader />;
 
   return (
-    <div className="bg-gray-950 min-h-screen overflow-x-hidden">
+    // ✅ ADD dark class conditionally
+    <div className={`${darkMode ? 'bg-gray-950' : 'bg-white'} min-h-screen overflow-x-hidden transition-colors duration-300`}>
       <Cursor />
-      <Navbar />
+      {/* ✅ PASS darkMode props to Navbar */}
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
       <main>
         <Hero />
         <About />
