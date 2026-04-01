@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FiMenu, FiX, FiMoon, FiSun } from 'react-icons/fi';
+import { FiMenu, FiX } from 'react-icons/fi';
 
-const Navbar = ({ darkMode, setDarkMode }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -89,17 +89,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               </motion.button>
             ))}
 
-            {/* Dark Mode Toggle */}
-            <motion.button
-              onClick={() => setDarkMode(!darkMode)}
-              className="ml-4 p-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white transition-all"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              {darkMode ? <FiSun size={18} /> : <FiMoon size={18} />}
-            </motion.button>
-
-            {/* Resume Button */}
+            {/* ✅ Resume Button only - no dark mode toggle */}
             <motion.a
               href="/resume.pdf"
               target="_blank"
@@ -112,14 +102,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-2">
-            <motion.button
-              onClick={() => setDarkMode(!darkMode)}
-              className="p-2 rounded-lg bg-gray-800 text-gray-300"
-              whileTap={{ scale: 0.9 }}
-            >
-              {darkMode ? <FiSun size={18} /> : <FiMoon size={18} />}
-            </motion.button>
+          <div className="md:hidden flex items-center">
             <motion.button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg bg-gray-800 text-gray-300 hover:text-white"

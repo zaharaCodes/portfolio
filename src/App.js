@@ -43,7 +43,6 @@ const Loader = () => (
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [darkMode, setDarkMode] = useState(true); // ✅ ADD THIS
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -52,23 +51,12 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  // ✅ ADD THIS - applies dark class to html element
-  useEffect(() => {
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [darkMode]);
-
   if (loading) return <Loader />;
 
   return (
-    // ✅ ADD dark class conditionally
-    <div className={`${darkMode ? 'bg-gray-950' : 'bg-white'} min-h-screen overflow-x-hidden transition-colors duration-300`}>
+    <div className="bg-gray-950 min-h-screen overflow-x-hidden">
       <Cursor />
-      {/* ✅ PASS darkMode props to Navbar */}
-      <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Navbar />
       <main>
         <Hero />
         <About />
