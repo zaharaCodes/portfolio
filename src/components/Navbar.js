@@ -18,8 +18,6 @@ const Navbar = ({ darkMode, setDarkMode }) => {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-      
-      // Active section detection
       const sections = ['home', 'about', 'skills', 'projects', 'contact'];
       const current = sections.find(section => {
         const el = document.getElementById(section);
@@ -49,14 +47,14 @@ const Navbar = ({ darkMode, setDarkMode }) => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-gray-950/90 backdrop-blur-md border-b border-gray-800 shadow-lg' 
+        scrolled
+          ? 'bg-gray-950/90 backdrop-blur-md border-b border-gray-800 shadow-lg'
           : 'bg-transparent'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          
+
           {/* Logo */}
           <motion.a
             href="#home"
@@ -90,7 +88,7 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                 )}
               </motion.button>
             ))}
-            
+
             {/* Dark Mode Toggle */}
             <motion.button
               onClick={() => setDarkMode(!darkMode)}

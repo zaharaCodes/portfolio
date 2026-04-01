@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { FiMail, FiGithub, FiLinkedin, FiSend, FiMapPin } from 'react-icons/fi';
+import { FiMail, FiGithub, FiLinkedin, FiSend, FiMapPin, FiCheckCircle } from 'react-icons/fi';
 import { info } from '../data/info';
 
 const Contact = () => {
@@ -17,7 +17,6 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
-    // Simulate sending
     await new Promise(r => setTimeout(r, 2000));
     setStatus('success');
     setSending(false);
@@ -27,21 +26,24 @@ const Contact = () => {
 
   const socialLinks = [
     { icon: <FiMail size={20} />, label: 'Email', href: `mailto:${info.email}`, value: info.email },
-    { icon: <FiGithub size={20} />, label: 'GitHub', href: info.github, value: 'github.com/fathima' },
+    { icon: <FiGithub size={20} />, label: 'GitHub', href: info.github, value: 'github.com/zaharaCodes' },
     { icon: <FiLinkedin size={20} />, label: 'LinkedIn', href: info.linkedin, value: 'linkedin.com/in/fathima' },
   ];
 
   return (
     <section id="contact" className="py-20 px-4 bg-gray-900/30">
       <div className="max-w-6xl mx-auto" ref={ref}>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-400">Touch</span>
+            Get In{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-pink-400">
+              Touch
+            </span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-pink-500 mx-auto rounded-full mb-4"></div>
           <p className="text-gray-400 max-w-2xl mx-auto">
@@ -50,8 +52,8 @@ const Contact = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12">
-          
-          {/* Left Side - Info */}
+
+          {/* Left Side */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -59,7 +61,7 @@ const Contact = () => {
           >
             <h3 className="text-2xl font-bold text-white mb-4">Let's work together!</h3>
             <p className="text-gray-400 mb-8 leading-relaxed">
-              I'm currently open to new opportunities. Whether you have a question or 
+              I'm currently open to new opportunities. Whether you have a question or
               just want to say hi, my inbox is always open!
             </p>
 
@@ -136,13 +138,15 @@ const Contact = () => {
                 />
               </div>
 
+              {/* Success - icon instead of emoji */}
               {status === 'success' && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-4 rounded-xl bg-green-500/20 border border-green-500/30 text-green-400 text-sm"
+                  className="p-4 rounded-xl bg-green-500/20 border border-green-500/30 text-green-400 text-sm flex items-center gap-2"
                 >
-                  ✅ Message sent! I'll get back to you soon.
+                  <FiCheckCircle size={16} />
+                  Message sent! I'll get back to you soon.
                 </motion.div>
               )}
 

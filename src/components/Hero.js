@@ -1,39 +1,35 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FiGithub, FiLinkedin, FiMail, FiArrowDown } from 'react-icons/fi';
+import { HiArrowRight } from 'react-icons/hi';
 import { info } from '../data/info';
 
-// Only Full Stack Developer now
-const roles = [
-  'Full Stack Developer',
-];
+const roles = ['Full Stack Developer'];
 
 const Hero = () => {
   const [text, setText] = useState('');
-  const [roleIndex, setRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    const currentRole = roles[roleIndex];
+    const currentRole = roles[0];
     const speed = isDeleting ? 50 : 100;
 
     const timer = setTimeout(() => {
       if (!isDeleting) {
         setText(currentRole.slice(0, text.length + 1));
         if (text === currentRole) {
-          // Don't delete, just keep it static
+          setTimeout(() => setIsDeleting(true), 2000);
         }
       } else {
         setText(currentRole.slice(0, text.length - 1));
         if (text === '') {
           setIsDeleting(false);
-          setRoleIndex((prev) => (prev + 1) % roles.length);
         }
       }
     }, speed);
 
     return () => clearTimeout(timer);
-  }, [text, isDeleting, roleIndex]);
+  }, [text, isDeleting]);
 
   const scrollToProjects = () => {
     document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
@@ -72,7 +68,7 @@ const Hero = () => {
           {/* Left Side - Text */}
           <div className="flex-1 text-center lg:text-left">
 
-            {/* Badge */}
+            {/* Available Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -96,7 +92,7 @@ const Hero = () => {
               </span>
             </motion.h1>
 
-            {/* Static Role - Full Stack Developer only */}
+            {/* Typewriter - Only Full Stack Developer */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -118,7 +114,7 @@ const Hero = () => {
               performant web experiences from frontend to backend.
             </motion.p>
 
-            {/* Buttons */}
+            {/* Buttons - no emojis, icons instead */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -127,20 +123,22 @@ const Hero = () => {
             >
               <motion.button
                 onClick={scrollToProjects}
-                className="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold text-lg hover:from-blue-500 hover:to-cyan-500 transition-all shadow-lg shadow-blue-500/25"
+                className="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold text-lg hover:from-blue-500 hover:to-cyan-500 transition-all shadow-lg shadow-blue-500/25 flex items-center gap-2"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                View My Work 🚀
+                View My Work
+                <HiArrowRight size={20} />
               </motion.button>
 
               <motion.button
                 onClick={scrollToContact}
-                className="px-8 py-4 rounded-xl border border-gray-700 text-gray-300 font-semibold text-lg hover:border-blue-500 hover:text-white transition-all"
+                className="px-8 py-4 rounded-xl border border-gray-700 text-gray-300 font-semibold text-lg hover:border-blue-500 hover:text-white transition-all flex items-center gap-2"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Contact Me 📬
+                Contact Me
+                <FiMail size={20} />
               </motion.button>
             </motion.div>
 
@@ -186,25 +184,24 @@ const Hero = () => {
               {/* Glow behind photo */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 blur-2xl opacity-20 rounded-3xl"></div>
 
-              {/* ✅ BIGGER Square Photo */}
-              <div className="relative w-80 h-80 md:w-96 md:h-96 rounded-3xl overflow-hidden border-4 border-blue-500/50 shadow-2xl shadow-blue-500/20">
+              {/* Square Photo - object-top to show full face */}
+              <div className="relative w-80 h-96 md:w-96 md:h-[420px] rounded-3xl overflow-hidden border-4 border-blue-500/50 shadow-2xl shadow-blue-500/20">
                 <img
                   src="/images/Fathima Zahara.jpg"
                   alt={info.name}
-                  className="w-full h-full object-cover object-center"
+                  className="w-full h-full object-cover object-top"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
               </div>
 
-              {/* ✅ ONE Strong Powerful Quote Badge */}
+              {/* ONE Strong Quote Badge */}
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
                 className="absolute -bottom-6 -left-6 bg-gray-900 border border-blue-500/40 rounded-2xl px-4 py-3 shadow-xl z-10 max-w-[200px]"
               >
-                <div className="text-lg text-center mb-1">💡</div>
                 <div className="text-white font-bold text-xs text-center leading-snug tracking-wide">
-                  "Code is my canvas,<br/>the web is my art."
+                  "Code is my canvas,<br />the web is my art."
                 </div>
               </motion.div>
 
@@ -218,7 +215,7 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="flex flex-col items-center gap-2 text-gray-500 mt-16"
+          className="flex flex-col items-center gap-2 text-gray-500 mt-20"
         >
           <span className="text-xs tracking-widest uppercase">Scroll</span>
           <motion.div

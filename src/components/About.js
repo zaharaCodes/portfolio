@@ -19,7 +19,7 @@ const About = () => {
   return (
     <section id="about" className="py-20 px-4">
       <div className="max-w-6xl mx-auto" ref={ref}>
-        
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -27,13 +27,16 @@ const About = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Me</span>
+            About{' '}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
+              Me
+            </span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full"></div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          
+
           {/* Text Side */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -44,13 +47,16 @@ const About = () => {
               {info.about}
             </p>
             <p className="text-gray-400 text-base leading-relaxed mb-8">
-              When I'm not coding, I'm exploring new technologies, contributing to open source, 
+              When I'm not coding, I'm exploring new technologies, contributing to open source,
               and staying updated with the latest in cloud-native development and AI.
             </p>
-            
+
             <div className="flex flex-wrap gap-3">
               {['Problem Solver', 'Team Player', 'Fast Learner', 'Open Source'].map((tag) => (
-                <span key={tag} className="px-4 py-2 rounded-full bg-gray-800 border border-gray-700 text-gray-300 text-sm hover:border-blue-500 transition-all">
+                <span
+                  key={tag}
+                  className="px-4 py-2 rounded-full bg-gray-800 border border-gray-700 text-gray-300 text-sm hover:border-blue-500 transition-all"
+                >
                   {tag}
                 </span>
               ))}

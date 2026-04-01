@@ -1,32 +1,12 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import {
-  SiReact,
-  SiJavascript,
-  SiTailwindcss,
-  SiHtml5,
-  SiNextdotjs,
-  SiNodedotjs,
-  SiExpress,
-  SiPython,
-  SiGraphql,
-  SiMongodb,
-  SiPostgresql,
-  SiMysql,
-  SiRedis,
-  SiFirebase,
-  SiGithub,
-  SiDocker,
-  SiLinux,
-  SiFigma,
+  SiReact, SiJavascript, SiTailwindcss, SiHtml5, SiNextdotjs,
+  SiNodedotjs, SiExpress, SiPython, SiGraphql,
+  SiMongodb, SiPostgresql, SiMysql, SiRedis, SiFirebase,
+  SiGithub, SiDocker, SiLinux, SiFigma,
 } from 'react-icons/si';
-import {
-  FiCode,
-  FiServer,
-  FiDatabase,
-  FiTool,
-  FiCloud,
-} from 'react-icons/fi';
+import { FiCode, FiServer, FiDatabase, FiTool, FiCloud } from 'react-icons/fi';
 import { info } from '../data/info';
 
 const skillIcons = {
@@ -123,18 +103,14 @@ const Skills = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: catIndex * 0.1 }}
               className={`p-6 rounded-2xl bg-gray-900 border ${category.border} hover:bg-gray-800/50 transition-all`}
-              style={{
-                boxShadow: isInView ? `0 0 30px ${category.glow}10` : 'none',
-              }}
+              style={{ boxShadow: isInView ? `0 0 30px ${category.glow}10` : 'none' }}
             >
               {/* Category Header */}
               <div className="flex items-center gap-3 mb-6">
                 <div className={`w-10 h-10 rounded-xl bg-gradient-to-r ${category.color} flex items-center justify-center text-white`}>
                   {category.icon}
                 </div>
-                <h3 className="text-white font-bold text-lg">
-                  {category.title}
-                </h3>
+                <h3 className="text-white font-bold text-lg">{category.title}</h3>
               </div>
 
               {/* Skills List */}
@@ -159,8 +135,6 @@ const Skills = () => {
                           {skill.level}%
                         </span>
                       </div>
-
-                      {/* Progress Bar */}
                       <div className="h-1.5 bg-gray-800 rounded-full overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
@@ -192,11 +166,7 @@ const Skills = () => {
             Also familiar with
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            {[
-              'TypeScript', 'GraphQL', 'Redis',
-              'Nginx', 'Linux', 'Bash',
-              'Jest', 'Webpack', 'Vite',
-            ].map(tech => (
+            {['TypeScript', 'GraphQL', 'Redis', 'Nginx', 'Linux', 'Bash', 'Jest', 'Webpack', 'Vite'].map(tech => (
               <motion.span
                 key={tech}
                 className="px-4 py-2 rounded-full bg-gray-800 border border-gray-700 text-gray-400 text-sm hover:border-purple-500 hover:text-purple-400 transition-all cursor-default"
