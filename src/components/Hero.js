@@ -3,12 +3,9 @@ import { motion } from 'framer-motion';
 import { FiGithub, FiLinkedin, FiMail, FiArrowDown } from 'react-icons/fi';
 import { info } from '../data/info';
 
-// Move roles OUTSIDE component to fix eslint error
+// Only Full Stack Developer now
 const roles = [
   'Full Stack Developer',
-  'React Developer',
-  'Node.js Developer',
-  'UI/UX Enthusiast',
 ];
 
 const Hero = () => {
@@ -24,7 +21,7 @@ const Hero = () => {
       if (!isDeleting) {
         setText(currentRole.slice(0, text.length + 1));
         if (text === currentRole) {
-          setTimeout(() => setIsDeleting(true), 1500);
+          // Don't delete, just keep it static
         }
       } else {
         setText(currentRole.slice(0, text.length - 1));
@@ -99,7 +96,7 @@ const Hero = () => {
               </span>
             </motion.h1>
 
-            {/* Typewriter Role */}
+            {/* Static Role - Full Stack Developer only */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -189,8 +186,8 @@ const Hero = () => {
               {/* Glow behind photo */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 blur-2xl opacity-20 rounded-3xl"></div>
 
-              {/* ✅ SQUARE Photo Container - properly fitted */}
-              <div className="relative w-64 h-64 md:w-72 md:h-72 rounded-3xl overflow-hidden border-4 border-blue-500/50 shadow-2xl shadow-blue-500/20">
+              {/* ✅ BIGGER Square Photo */}
+              <div className="relative w-80 h-80 md:w-96 md:h-96 rounded-3xl overflow-hidden border-4 border-blue-500/50 shadow-2xl shadow-blue-500/20">
                 <img
                   src="/images/Fathima Zahara.jpg"
                   alt={info.name}
@@ -199,39 +196,15 @@ const Hero = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
               </div>
 
-              {/* 😂 Funny Badge 1 - Top Right */}
+              {/* ✅ ONE Strong Powerful Quote Badge */}
               <motion.div
-                animate={{ y: [0, -10, 0] }}
+                animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -top-5 -right-6 bg-gray-900 border border-gray-700 rounded-2xl px-3 py-2 shadow-xl z-10 max-w-[130px]"
+                className="absolute -bottom-6 -left-6 bg-gray-900 border border-blue-500/40 rounded-2xl px-4 py-3 shadow-xl z-10 max-w-[200px]"
               >
-                <div className="text-sm text-center">☕</div>
-                <div className="text-white font-bold text-xs text-center leading-tight">
-                  Runs on coffee & ctrl+z
-                </div>
-              </motion.div>
-
-              {/* 😂 Funny Badge 2 - Bottom Left */}
-              <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                className="absolute -bottom-5 -left-6 bg-gray-900 border border-gray-700 rounded-2xl px-3 py-2 shadow-xl z-10 max-w-[130px]"
-              >
-                <div className="text-sm text-center">🐛</div>
-                <div className="text-white font-bold text-xs text-center leading-tight">
-                  It's not a bug, it's a feature
-                </div>
-              </motion.div>
-
-              {/* 😂 Funny Badge 3 - Right Middle */}
-              <motion.div
-                animate={{ x: [0, 10, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                className="absolute top-1/2 -right-20 -translate-y-1/2 bg-gray-900 border border-gray-700 rounded-2xl px-3 py-2 shadow-xl z-10 max-w-[130px]"
-              >
-                <div className="text-sm text-center">🔥</div>
-                <div className="text-white font-bold text-xs text-center leading-tight">
-                  Works on my machine!
+                <div className="text-lg text-center mb-1">💡</div>
+                <div className="text-white font-bold text-xs text-center leading-snug tracking-wide">
+                  "Code is my canvas,<br/>the web is my art."
                 </div>
               </motion.div>
 
