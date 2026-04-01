@@ -186,53 +186,53 @@ const Hero = () => {
           >
             <div className="relative">
 
-              {/* Rotating Ring */}
-              <div
-                className="absolute inset-0 rounded-full border-2 border-dashed border-blue-500/30 animate-spin"
-                style={{ animationDuration: '20s' }}
-              ></div>
+              {/* Glow behind photo */}
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 blur-2xl opacity-20 rounded-3xl"></div>
 
-              {/* Glow Ring */}
-              <div className="absolute inset-4 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 blur-md opacity-30 animate-pulse"></div>
-
-              {/* Photo Container */}
-              <div className="relative w-56 h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-4 border-blue-500/50 shadow-2xl shadow-blue-500/20">
+              {/* ✅ SQUARE Photo Container - properly fitted */}
+              <div className="relative w-64 h-64 md:w-72 md:h-72 rounded-3xl overflow-hidden border-4 border-blue-500/50 shadow-2xl shadow-blue-500/20">
                 <img
                   src="/images/Fathima Zahara.jpg"
                   alt={info.name}
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-center"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent"></div>
               </div>
 
-              {/* Floating Badge - Experience */}
+              {/* 😂 Funny Badge 1 - Top Right */}
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -top-4 -right-4 bg-gray-900 border border-gray-700 rounded-2xl px-3 py-2 shadow-xl z-10"
+                className="absolute -top-5 -right-6 bg-gray-900 border border-gray-700 rounded-2xl px-3 py-2 shadow-xl z-10 max-w-[130px]"
               >
-                <div className="text-xs text-gray-400">Experience</div>
-                <div className="text-white font-bold text-sm">2+ Years</div>
+                <div className="text-sm text-center">☕</div>
+                <div className="text-white font-bold text-xs text-center leading-tight">
+                  Runs on coffee & ctrl+z
+                </div>
               </motion.div>
 
-              {/* Floating Badge - Projects */}
+              {/* 😂 Funny Badge 2 - Bottom Left */}
               <motion.div
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-                className="absolute -bottom-4 -left-4 bg-gray-900 border border-gray-700 rounded-2xl px-3 py-2 shadow-xl z-10"
+                className="absolute -bottom-5 -left-6 bg-gray-900 border border-gray-700 rounded-2xl px-3 py-2 shadow-xl z-10 max-w-[130px]"
               >
-                <div className="text-xs text-gray-400">Projects</div>
-                <div className="text-white font-bold text-sm">10+ Built</div>
+                <div className="text-sm text-center">🐛</div>
+                <div className="text-white font-bold text-xs text-center leading-tight">
+                  It's not a bug, it's a feature
+                </div>
               </motion.div>
 
-              {/* Floating Badge - React */}
+              {/* 😂 Funny Badge 3 - Right Middle */}
               <motion.div
                 animate={{ x: [0, 10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-                className="absolute top-1/2 -right-16 bg-gray-900 border border-gray-700 rounded-2xl px-3 py-2 shadow-xl z-10"
+                className="absolute top-1/2 -right-20 -translate-y-1/2 bg-gray-900 border border-gray-700 rounded-2xl px-3 py-2 shadow-xl z-10 max-w-[130px]"
               >
-                <div className="text-lg text-center">⚛️</div>
-                <div className="text-xs text-gray-400">React</div>
+                <div className="text-sm text-center">🔥</div>
+                <div className="text-white font-bold text-xs text-center leading-tight">
+                  Works on my machine!
+                </div>
               </motion.div>
 
             </div>
