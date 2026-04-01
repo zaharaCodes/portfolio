@@ -63,17 +63,17 @@ const Hero = () => {
 
       {/* Main Content */}
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
 
           {/* Left Side - Text */}
           <div className="flex-1 text-center lg:text-left">
 
-            {/* Available Badge */}
+            {/* Available Badge - pushed down with mt */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm mb-6 mt-8"
             >
               <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
               Available for work
@@ -92,7 +92,7 @@ const Hero = () => {
               </span>
             </motion.h1>
 
-            {/* Typewriter - Only Full Stack Developer */}
+            {/* Typewriter */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -114,7 +114,7 @@ const Hero = () => {
               performant web experiences from frontend to backend.
             </motion.p>
 
-            {/* Buttons - no emojis, icons instead */}
+            {/* Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -172,33 +172,33 @@ const Hero = () => {
             </motion.div>
           </div>
 
-          {/* Right Side - Photo */}
+          {/* Right Side - Photo - pushed down with mt-16 */}
           <motion.div
             initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
             transition={{ duration: 0.8, delay: 0.3, type: 'spring' }}
-            className="flex-shrink-0"
+            className="flex-shrink-0 mt-16 lg:mt-24"
           >
             <div className="relative">
 
-              {/* Glow behind photo */}
+              {/* Glow */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 blur-2xl opacity-20 rounded-3xl"></div>
 
-              {/* Full Photo - contain so whole image fits */}
-<div className="relative w-80 h-[500px] md:w-96 md:h-[540px] rounded-3xl overflow-hidden border-4 border-blue-500/50 shadow-2xl shadow-blue-500/20 bg-gray-900">
-  <img
-    src="/images/Fathima Zahara.jpg"
-    alt={info.name}
-    className="w-full h-full object-contain object-center"
-  />
-  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent pointer-events-none"></div>
-</div>
+              {/* ✅ Photo - proper size, fits in screen */}
+              <div className="relative w-64 h-[420px] md:w-72 md:h-[460px] rounded-3xl overflow-hidden border-4 border-blue-500/50 shadow-2xl shadow-blue-500/20 bg-gray-900">
+                <img
+                  src="/images/Fathima Zahara.jpg"
+                  alt={info.name}
+                  className="w-full h-full object-contain object-center"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent pointer-events-none"></div>
+              </div>
 
-              {/* ONE Strong Quote Badge */}
+              {/* Quote Badge */}
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="absolute -bottom-6 -left-6 bg-gray-900 border border-blue-500/40 rounded-2xl px-4 py-3 shadow-xl z-10 max-w-[200px]"
+                className="absolute -bottom-6 -left-6 bg-gray-900 border border-blue-500/40 rounded-2xl px-4 py-3 shadow-xl z-10 max-w-[190px]"
               >
                 <div className="text-white font-bold text-xs text-center leading-snug tracking-wide">
                   "Code is my canvas,<br />the web is my art."
@@ -210,7 +210,7 @@ const Hero = () => {
 
         </div>
 
-        {/* Scroll Down Arrow */}
+        {/* Scroll Down */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
