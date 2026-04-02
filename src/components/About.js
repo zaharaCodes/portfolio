@@ -4,7 +4,7 @@ import { info } from '../data/info';
 
 const funFacts = [
   { icon: "🗺️", label: "Traveller", desc: "Always planning the next escape" },
-  { icon: "🚂", label: "Explorer", desc: "Trains > flights, always" },
+  { icon: "🌄", label: "Explorer", desc: "Sunsets hit different from new places" },
   { icon: "🎒", label: "Backpacker", desc: "One bag. Zero regrets." },
   { icon: "🍵", label: "Tea Lover", desc: "Not coffee. Never coffee. 🚫☕" },
   { icon: "🎧", label: "Music", desc: "Lo-fi beats = instant focus mode" },
@@ -69,7 +69,7 @@ const About = () => {
           >
             {/* Left */}
             <div>
-              <p className="text-gray-300 text-lg leading-relaxed mb-5">
+              <p className="text-gray-300 text-lg leading-relaxed mb-8">
                 {info.about}
               </p>
               <div className="flex flex-wrap gap-3">
@@ -84,7 +84,7 @@ const About = () => {
               </div>
             </div>
 
-            {/* Right — Stats */}
+            {/* Right */}
             <div className="grid grid-cols-2 gap-4">
               {[
                 { value: "5+", label: "Projects Built", color: "from-blue-500 to-cyan-500" },
@@ -105,20 +105,29 @@ const About = () => {
                 </motion.div>
               ))}
 
-              {/* Internship card */}
+              {/* Fun card instead of boring "currently working" */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.4, delay: 0.5 }}
                 whileHover={{ scale: 1.02, y: -4 }}
-                className="col-span-2 p-6 rounded-2xl bg-gray-900 border border-gray-800 hover:border-blue-500/30 transition-all"
+                className="col-span-2 p-5 rounded-2xl bg-gray-900 border border-gray-800 hover:border-blue-500/30 transition-all"
               >
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                  <span className="text-green-400 text-sm font-medium">Currently Working</span>
+                <div className="flex items-start gap-4">
+                  <div className="text-3xl">🚀</div>
+                  <div>
+                    <p className="text-white font-semibold text-sm">
+                      Shipping code at Vrishanksoft
+                    </p>
+                    <p className="text-gray-500 text-xs mt-1">
+                      Building real products · agile team · Feb 2026 – Present
+                    </p>
+                    <div className="flex items-center gap-2 mt-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                      <span className="text-green-400 text-xs font-medium">Active & building</span>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-white font-semibold mt-2">Full Stack Developer Intern</p>
-                <p className="text-gray-400 text-sm">Vrishanksoft (OPC) Pvt Ltd · Feb 2026 – Present</p>
               </motion.div>
             </div>
           </motion.div>
@@ -160,7 +169,6 @@ const About = () => {
               ))}
             </div>
 
-            {/* Quote */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}

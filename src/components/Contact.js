@@ -1,11 +1,17 @@
 import React, { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { FiMail, FiGithub, FiLinkedin, FiSend, FiMapPin, FiCheckCircle } from 'react-icons/fi';
+import { FiMail, FiGithub, FiLinkedin, FiSend, FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
+import emailjs from '@emailjs/browser';
 import { info } from '../data/info';
+
+const SERVICE_ID  = 'service_klwiv7w';
+const TEMPLATE_ID = 'template_umd363h';
+const PUBLIC_KEY  = 'ICXIWHx-jRsFlsH0M';
 
 const Contact = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const formRef = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: '-100px' });
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [status, setStatus] = useState('');
   const [sending, setSending] = useState(false);
@@ -17,23 +23,55 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSending(true);
-    await new Promise(r => setTimeout(r, 2000));
-    setStatus('success');
-    setSending(false);
-    setFormData({ name: '', email: '', message: '' });
-    setTimeout(() => setStatus(''), 4000);
+    setStatus('');
+
+    try {
+      await emailjs.sendForm(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        formRef.current,
+        PUBLIC_KEY
+      );
+      setStatus('success');
+      setFormData({ name: '', email: '', message: '' });
+    } catch (err) {
+      console.error(err);
+      setStatus('error');
+    } finally {
+      setSending(false);
+      setTimeout(() => setStatus(''), 5000);
+    }
   };
 
   const socialLinks = [
-    { icon: <FiMail size={20} />, label: 'Email', href: `mailto:${info.email}`, value: info.email },
-    { icon: <FiGithub size={20} />, label: 'GitHub', href: info.github, value: 'github.com/zaharaCodes' },
-    { icon: <FiLinkedin size={20} />, label: 'LinkedIn', href: info.linkedin, value: 'linkedin.com/in/fathima' },
+    {
+      icon: <FiMail size={20} />,
+      label: 'Email',
+      href: `mailto:${info.email}`,
+      value: info.email,
+      color: '#f97316',
+    },
+    {
+      icon: <FiGithub size={20} />,
+      label: 'GitHub',
+      href: info.github,
+      value: 'github.com/zaharaCodes',
+      color: '#a78bfa',
+    },
+    {
+      icon: <FiLinkedin size={20} />,
+      label: 'LinkedIn',
+      href: info.linkedin,
+      value: 'linkedin.com/in/fathima-zahara525',
+      color: '#38bdf8',
+    },
   ];
 
   return (
     <section id="contact" className="py-20 px-4 bg-gray-900/30">
       <div className="max-w-6xl mx-auto" ref={ref}>
 
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -45,9 +83,9 @@ const Contact = () => {
               Touch
             </span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-pink-500 mx-auto rounded-full mb-4"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-orange-500 to-pink-500 mx-auto rounded-full mb-4" />
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? I'd love to hear from you!
+            Have a project in mind or just want to say hi? My inbox is always open!
           </p>
         </motion.div>
 
@@ -59,17 +97,23 @@ const Contact = () => {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.2 }}
           >
-            <h3 className="text-2xl font-bold text-white mb-4">Let's work together!</h3>
-            <p className="text-gray-400 mb-8 leading-relaxed">
-              I'm currently open to new opportunities. Whether you have a question or
-              just want to say hi, my inbox is always open!
+            <h3 className="text-2xl font-bold text-white mb-3">
+              Let's build something great!
+            </h3>
+            <p className="text-gray-400 mb-3 leading-relaxed">
+              I'm always excited to work on interesting projects and collaborate
+              with cool people. Drop a message and I'll get back to you fast! 🚀
             </p>
 
-            <div className="flex items-center gap-3 text-gray-400 mb-6">
-              <FiMapPin className="text-orange-400" />
-              <span>Available for Remote Work Worldwide</span>
+            {/* Status badge */}
+            <div className="flex items-center gap-2 mb-8">
+              <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-green-400 text-sm font-medium">
+                Open to freelance & full-time opportunities
+              </span>
             </div>
 
+            {/* Social Links */}
             <div className="space-y-4">
               {socialLinks.map((social) => (
                 <motion.a
@@ -77,88 +121,114 @@ const Contact = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 rounded-xl bg-gray-900 border border-gray-800 hover:border-orange-500/50 hover:bg-gray-800 transition-all group"
-                  whileHover={{ x: 5 }}
+                  className="flex items-center gap-4 p-4 rounded-xl bg-gray-900 border border-gray-800 hover:bg-gray-800 transition-all group"
+                  style={{ '--hover-color': social.color }}
+                  whileHover={{ x: 6 }}
                 >
-                  <div className="text-orange-400 group-hover:scale-110 transition-transform">
+                  <div
+                    className="p-2 rounded-lg transition-all"
+                    style={{ background: social.color + '20', color: social.color }}
+                  >
                     {social.icon}
                   </div>
                   <div>
-                    <div className="text-xs text-gray-500">{social.label}</div>
+                    <div className="text-xs text-gray-500 mb-0.5">{social.label}</div>
                     <div className="text-gray-300 text-sm group-hover:text-white transition-colors">
                       {social.value}
                     </div>
+                  </div>
+                  <div className="ml-auto text-gray-600 group-hover:text-gray-400 transition-colors">
+                    →
                   </div>
                 </motion.a>
               ))}
             </div>
           </motion.div>
 
-          {/* Right Side - Form */}
+          {/* Right Side — Form */}
           <motion.div
             initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.3 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-5">
+
               <div>
                 <label className="block text-sm text-gray-400 mb-2">Your Name</label>
                 <input
                   type="text"
-                  name="name"
+                  name="from_name"
                   value={formData.name}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
-                  placeholder="John Doe"
+                  placeholder="Fathima Zahara"
                   className="w-full px-4 py-3 rounded-xl bg-gray-900 border border-gray-700 text-white placeholder-gray-600 focus:outline-none focus:border-orange-500 transition-colors"
                 />
               </div>
+
               <div>
                 <label className="block text-sm text-gray-400 mb-2">Email Address</label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
-                  placeholder="john@example.com"
+                  placeholder="you@example.com"
                   className="w-full px-4 py-3 rounded-xl bg-gray-900 border border-gray-700 text-white placeholder-gray-600 focus:outline-none focus:border-orange-500 transition-colors"
                 />
               </div>
+
               <div>
                 <label className="block text-sm text-gray-400 mb-2">Message</label>
                 <textarea
                   name="message"
                   value={formData.message}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
                   rows={5}
-                  placeholder="Tell me about your project..."
+                  placeholder="Hey Fathima, I'd love to collaborate on..."
                   className="w-full px-4 py-3 rounded-xl bg-gray-900 border border-gray-700 text-white placeholder-gray-600 focus:outline-none focus:border-orange-500 transition-colors resize-none"
                 />
               </div>
 
-              {/* Success - icon instead of emoji */}
+              {/* Success Message */}
               {status === 'success' && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-4 rounded-xl bg-green-500/20 border border-green-500/30 text-green-400 text-sm flex items-center gap-2"
+                  className="p-4 rounded-xl bg-green-500/15 border border-green-500/30 text-green-400 text-sm flex items-center gap-2"
                 >
                   <FiCheckCircle size={16} />
-                  Message sent! I'll get back to you soon.
+                  Message sent! I'll get back to you soon 🚀
                 </motion.div>
               )}
 
+              {/* Error Message */}
+              {status === 'error' && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 rounded-xl bg-red-500/15 border border-red-500/30 text-red-400 text-sm flex items-center gap-2"
+                >
+                  <FiAlertCircle size={16} />
+                  Oops! Something went wrong. Try emailing me directly.
+                </motion.div>
+              )}
+
+              {/* Submit Button */}
               <motion.button
                 type="submit"
                 disabled={sending}
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-orange-500 to-pink-500 text-white font-medium flex items-center justify-center gap-2 hover:from-orange-400 hover:to-pink-400 transition-all disabled:opacity-70"
+                className="w-full py-4 rounded-xl bg-gradient-to-r from-orange-500 to-pink-500 text-white font-medium flex items-center justify-center gap-2 hover:from-orange-400 hover:to-pink-400 transition-all disabled:opacity-70 disabled:cursor-not-allowed"
                 whileHover={{ scale: sending ? 1 : 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
                 {sending ? (
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <>
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Sending...
+                  </>
                 ) : (
                   <>
                     <FiSend size={18} />
@@ -166,6 +236,7 @@ const Contact = () => {
                   </>
                 )}
               </motion.button>
+
             </form>
           </motion.div>
         </div>
