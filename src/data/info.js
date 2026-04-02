@@ -66,7 +66,7 @@ export const info = {
       description: "Real-time agency project management dashboard with 3-role RBAC, Kanban board, live presence, Socket.io WebSockets, and auto overdue task flagging via node-cron. Fully containerized with Docker.",
       tags: ["React 18", "TypeScript", "Node.js", "PostgreSQL", "Socket.io", "Prisma ORM", "JWT", "Docker", "Tailwind CSS"],
       category: "fullstack",
-      video: https://res.cloudinary.com/dech7uxhb/video/upload/v1775155968/Agency_dashboard_cszzui.mp4,
+      video:"https://res.cloudinary.com/dech7uxhb/video/upload/v1775155968/Agency_dashboard_cszzui.mp4",
       github: "https://github.com/zaharaCodes",
       live: "https://github.com/zaharaCodes",
       color: "#f59e0b",
