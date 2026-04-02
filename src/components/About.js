@@ -3,19 +3,12 @@ import { motion, useInView } from 'framer-motion';
 import { info } from '../data/info';
 
 const funFacts = [
-  { emoji: "✈️", label: "Traveller", desc: "Always planning the next trip" },
-  { emoji: "🗺️", label: "Explorer", desc: "New places, new perspectives" },
-  { emoji: "📸", label: "Photographer", desc: "Capturing moments on the road" },
-  { emoji: "☕", label: "Coffee lover", desc: "Fuelled by caffeine & curiosity" },
-  { emoji: "🎧", label: "Music", desc: "Lo-fi beats while coding" },
-  { emoji: "🌙", label: "Night owl", desc: "Best ideas after midnight" },
-];
-
-const timeline = [
-  { year: "2022", event: "Started B.E. Computer Science at Malnad College" },
-  { year: "2024", event: "Built first full-stack AI project with Groq API" },
-  { year: "2025", event: "Published CNN research at iCREATE 2025 Conference" },
-  { year: "2026", event: "Full Stack Developer Intern at Vrishanksoft" },
+  { icon: "🌍", label: "Traveller", desc: "Always planning the next trip" },
+  { icon: "🏔️", label: "Explorer", desc: "New places, new perspectives" },
+  { icon: "🎒", label: "Backpacker", desc: "Light luggage, big adventures" },
+  { icon: "☕", label: "Coffee Lover", desc: "Fuelled by caffeine & curiosity" },
+  { icon: "🎧", label: "Music", desc: "Lo-fi beats while coding" },
+  { icon: "🌙", label: "Night Owl", desc: "Best ideas after midnight" },
 ];
 
 const About = () => {
@@ -43,14 +36,14 @@ const About = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full" />
         </motion.div>
 
-        {/* Tab Switcher */}
+        {/* Tab Switcher — only Story & Beyond Code */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.2 }}
           className="flex justify-center gap-3 mb-12"
         >
-          {['story', 'journey', 'beyond code'].map((tab) => (
+          {['story', 'beyond code'].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
@@ -80,9 +73,10 @@ const About = () => {
                 {info.about}
               </p>
               <p className="text-gray-400 text-base leading-relaxed mb-8">
-                Currently interning at <span className="text-blue-400 font-medium">Vrishanksoft</span>, 
+                Currently interning at{' '}
+                <span className="text-blue-400 font-medium">Vrishanksoft</span>,
                 building production features in an agile team. Final year CSE student at{' '}
-                <span className="text-cyan-400 font-medium">Malnad College of Engineering</span>, 
+                <span className="text-cyan-400 font-medium">Malnad College of Engineering</span>,
                 graduating 2026.
               </p>
               <div className="flex flex-wrap gap-3">
@@ -97,13 +91,11 @@ const About = () => {
               </div>
             </div>
 
-            {/* Right — Stats */}
+            {/* Right — 2 stat cards + internship card */}
             <div className="grid grid-cols-2 gap-4">
               {[
                 { value: "5+", label: "Projects Built", color: "from-blue-500 to-cyan-500" },
                 { value: "1", label: "Research Published", color: "from-purple-500 to-pink-500" },
-                { value: "7.89", label: "CGPA", color: "from-green-500 to-teal-500" },
-                { value: "2026", label: "Graduating", color: "from-orange-500 to-red-500" },
               ].map((stat, i) => (
                 <motion.div
                   key={stat.label}
@@ -119,40 +111,22 @@ const About = () => {
                   <div className="text-gray-400 text-sm">{stat.label}</div>
                 </motion.div>
               ))}
-            </div>
-          </motion.div>
-        )}
 
-        {/* TAB: Journey */}
-        {activeTab === 'journey' && (
-          <motion.div
-            key="journey"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="max-w-2xl mx-auto"
-          >
-            <div className="relative">
-              {/* Vertical line */}
-              <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 to-cyan-500 opacity-30" />
-
-              {timeline.map((item, i) => (
-                <motion.div
-                  key={item.year}
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: i * 0.15 }}
-                  className="flex gap-6 mb-10 relative"
-                >
-                  {/* Dot */}
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 z-10 shadow-lg shadow-blue-500/30">
-                    <span className="text-white text-xs font-bold">{item.year}</span>
-                  </div>
-                  <div className="pt-3 pb-2">
-                    <p className="text-gray-200 text-base leading-relaxed">{item.event}</p>
-                  </div>
-                </motion.div>
-              ))}
+              {/* Internship card — full width */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ duration: 0.4, delay: 0.5 }}
+                whileHover={{ scale: 1.02, y: -4 }}
+                className="col-span-2 p-6 rounded-2xl bg-gray-900 border border-gray-800 hover:border-blue-500/30 transition-all"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                  <span className="text-green-400 text-sm font-medium">Currently Working</span>
+                </div>
+                <p className="text-white font-semibold mt-2">Full Stack Developer Intern</p>
+                <p className="text-gray-400 text-sm">Vrishanksoft (OPC) Pvt Ltd · Feb 2026 – Present</p>
+              </motion.div>
             </div>
           </motion.div>
         )}
@@ -167,9 +141,9 @@ const About = () => {
           >
             <div className="text-center mb-10">
               <p className="text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
-                When I'm not pushing code, you'll probably find me somewhere new — 
-                exploring a city I've never been to, hunting for the best local food, 
-                or just watching sunsets from a random rooftop. 
+                When I'm not pushing code, you'll find me somewhere new —
+                exploring a city I've never been to, hunting for the best local food,
+                or watching sunsets from a random rooftop.
                 Travelling recharges me the same way solving a hard bug does. ✨
               </p>
             </div>
@@ -184,7 +158,7 @@ const About = () => {
                   whileHover={{ scale: 1.05, y: -6 }}
                   className="p-6 rounded-2xl bg-gray-900 border border-gray-800 hover:border-blue-500/50 transition-all text-center cursor-default group"
                 >
-                  <div className="text-4xl mb-3">{fact.emoji}</div>
+                  <div className="text-4xl mb-3">{fact.icon}</div>
                   <div className="text-white font-semibold mb-1 group-hover:text-blue-400 transition-colors">
                     {fact.label}
                   </div>

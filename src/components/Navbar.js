@@ -89,10 +89,11 @@ const Navbar = () => {
               </motion.button>
             ))}
 
-            {/* ✅ Resume Button only - no dark mode toggle */}
+            {/* Resume Button */}
             <motion.a
-              href="/resume.pdf"
+              href="/Fathima-Zahara-Resume.pdf"
               target="_blank"
+              rel="noopener noreferrer"
               className="ml-2 px-4 py-2 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-sm font-medium hover:from-blue-500 hover:to-cyan-500 transition-all"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -141,8 +142,9 @@ const Navbar = () => {
                 </motion.button>
               ))}
               <motion.a
-                href="/resume.pdf"
+                href="/Fathima-Zahara-Resume.pdf"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="block w-full text-center px-4 py-3 rounded-lg bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-sm font-medium mt-2"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
