@@ -99,7 +99,7 @@ const Contact = () => {
             </h3>
             <p className="text-gray-400 mb-3 leading-relaxed">
               I'm always excited to work on interesting projects and collaborate
-              with cool people. Drop a message and I'll get back to you fast! 🚀
+              with cool people. Drop a message and I'll get back to you fast! 
             </p>
 
             {/* Status badge */}

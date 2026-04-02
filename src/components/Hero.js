@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { FiGithub, FiLinkedin, FiMail, FiArrowDown } from 'react-icons/fi';
+import { FiMail, FiArrowDown } from 'react-icons/fi';
 import { HiArrowRight } from 'react-icons/hi';
 import { info } from '../data/info';
 
@@ -65,10 +65,10 @@ const Hero = () => {
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
 
-          {/* Left Side - Text */}
+          {/* Left Side */}
           <div className="flex-1 text-center lg:text-left">
 
-            {/* Available Badge - pushed down with mt */}
+            {/* Available Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -114,12 +114,12 @@ const Hero = () => {
               performant web experiences from frontend to backend.
             </motion.p>
 
-            {/* Buttons */}
+            {/* Buttons only — no social links */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-4 justify-center lg:justify-start mb-10"
+              className="flex flex-wrap gap-4 justify-center lg:justify-start"
             >
               <motion.button
                 onClick={scrollToProjects}
@@ -141,38 +141,9 @@ const Hero = () => {
                 <FiMail size={20} />
               </motion.button>
             </motion.div>
-
-            {/* Social Links */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="flex items-center gap-4 justify-center lg:justify-start"
-            >
-              {[
-                { icon: <FiGithub size={22} />, href: info.github, label: 'GitHub' },
-                { icon: <FiLinkedin size={22} />, href: info.linkedin, label: 'LinkedIn' },
-                { icon: <FiMail size={22} />, href: `mailto:${info.email}`, label: 'Email' },
-              ].map((social) => (
-                <motion.a
-                  key={social.label}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-gray-900 border border-gray-800 text-gray-400 hover:text-white hover:border-blue-500 hover:bg-gray-800 transition-all"
-                  whileHover={{ scale: 1.1, y: -3 }}
-                  whileTap={{ scale: 0.9 }}
-                  title={social.label}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
-              <div className="w-px h-8 bg-gray-700 mx-2"></div>
-              <span className="text-gray-500 text-sm">Follow me</span>
-            </motion.div>
           </div>
 
-          {/* Right Side - Photo - pushed down with mt-16 */}
+          {/* Right Side - Photo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
             animate={{ opacity: 1, scale: 1, rotate: 0 }}
@@ -180,11 +151,7 @@ const Hero = () => {
             className="flex-shrink-0 mt-16 lg:mt-24"
           >
             <div className="relative">
-
-              {/* Glow */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 blur-2xl opacity-20 rounded-3xl"></div>
-
-              {/* ✅ Photo - proper size, fits in screen */}
               <div className="relative w-64 h-[420px] md:w-72 md:h-[460px] rounded-3xl overflow-hidden border-4 border-blue-500/50 shadow-2xl shadow-blue-500/20 bg-gray-900">
                 <img
                   src="/images/Fathima Zahara.jpg"
@@ -194,7 +161,6 @@ const Hero = () => {
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent pointer-events-none"></div>
               </div>
 
-              {/* Quote Badge */}
               <motion.div
                 animate={{ y: [0, -8, 0] }}
                 transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
@@ -204,10 +170,8 @@ const Hero = () => {
                   "Code is my canvas,<br />the web is my art."
                 </div>
               </motion.div>
-
             </div>
           </motion.div>
-
         </div>
 
         {/* Scroll Down */}
@@ -225,7 +189,6 @@ const Hero = () => {
             <FiArrowDown size={20} />
           </motion.div>
         </motion.div>
-
       </div>
     </section>
   );
