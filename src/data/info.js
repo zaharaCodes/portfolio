@@ -2,15 +2,15 @@ export const info = {
   name: "Fathima Zahara",
   role: "Full Stack Developer",
   tagline: "I build things that live on the internet",
-  email: "fathima@gmail.com",
+  email: "zaharafathima935@gmail.com",
   github: "https://github.com/zaharaCodes",
-  linkedin: "https://linkedin.com/in/fathima",
-  location: "India",
+  linkedin: "https://linkedin.com/in/fathima-zahara525",
+  location: "Hassan, Karnataka, India",
 
-  about: `I'm a passionate Full Stack Developer who loves turning 
-  ideas into real, scalable web applications. I specialize in building 
-  end-to-end solutions from beautiful frontends to robust backends. 
-  I love clean code, good design, and solving complex problems.`,
+  about: `I'm a Full Stack Developer and final-year CSE student (2026) who loves turning 
+  ideas into real, scalable web applications. I specialize in building end-to-end solutions — 
+  from pixel-perfect frontends to rock-solid backends — with a strong focus on AI-powered products, 
+  real-time systems, and clean architecture. I love clean code, good design, and solving problems that actually matter.`,
 
   projects: [
     {
@@ -59,12 +59,82 @@ export const info = {
         "Email notifications system",
       ],
     },
+    {
+      id: 3,
+      title: "Flowspace — Agency Project Management",
+      story: "I wanted to build a real-world tool that a dev agency would actually use. Flowspace started from a simple question — how do teams track work without chaos? I architected a 3-role system (Admin, Project Manager, Developer) where every action is permission-gated. The trickiest part was Socket.io with role-filtered emits — making sure developers only see their tasks in real-time. Added node-cron to auto-flag overdue tasks every hour silently in the background. The Kanban board with live presence counters felt magical when it finally worked. Containerized everything with Docker Compose. This one taught me the most.",
+      description: "Real-time agency project management dashboard with 3-role RBAC, Kanban board, live presence, Socket.io WebSockets, and auto overdue task flagging via node-cron. Fully containerized with Docker.",
+      tags: ["React 18", "TypeScript", "Node.js", "PostgreSQL", "Socket.io", "Prisma ORM", "JWT", "Docker", "Tailwind CSS"],
+      category: "fullstack",
+      video: null,
+      github: "https://github.com/zaharaCodes",
+      live: "https://github.com/zaharaCodes",
+      color: "#f59e0b",
+      featured: true,
+      deployment: {
+        frontend: "Vercel",
+        backend: "Docker",
+      },
+      highlights: [
+        "3-role RBAC with JWT & HttpOnly cookies",
+        "Socket.io real-time with role-filtered emit",
+        "Kanban board with live presence counter",
+        "node-cron auto-flags overdue tasks hourly",
+      ],
+    },
+    {
+      id: 4,
+      title: "HealthBridge — AI Telemedicine Platform",
+      story: "Healthcare in rural India is broken — doctors are far, connectivity is poor, and patients have no way to get quick answers. I built HealthBridge to change that. The AI symptom triage using LLaMA 3.3 70B was the hardest feature — getting it to give Emergency/See Doctor/Monitor responses accurately took a lot of prompt engineering. WebRTC peer-to-peer video was another beast — handling ICE candidates and STUN servers was genuinely complex. The offline-first localStorage layer for 2G users was a detail I'm proud of. Docker + Nginx for deployment made it production-ready. This felt like building something that could save lives.",
+      description: "AI-powered telemedicine platform with LLaMA symptom triage, WebRTC video consultations, real-time chat, e-prescriptions, health records, and offline-first architecture for low-connectivity rural India.",
+      tags: ["React.js", "Node.js", "PostgreSQL", "Prisma ORM", "Firebase Auth", "Socket.io", "WebRTC", "Docker", "Nginx", "Groq API"],
+      category: "fullstack",
+      video: null,
+      github: "https://github.com/zaharaCodes",
+      live: "https://github.com/zaharaCodes",
+      color: "#ec4899",
+      featured: true,
+      deployment: {
+        frontend: "Vercel",
+        backend: "Docker + Nginx",
+      },
+      highlights: [
+        "LLaMA 3.3 70B AI symptom triage",
+        "WebRTC peer-to-peer video consultations",
+        "Offline-first for 2G rural India",
+        "E-prescriptions & vitals tracker",
+      ],
+    },
+    {
+      id: 5,
+      title: "Medicinal Plant Detection — Deep Learning",
+      story: "This started as a college research project and ended up getting published at iCREATE 2025 International Conference. I trained a CNN model from scratch using TensorFlow and Keras to identify medicinal plant species from images. The dataset curation was the most tedious part — cleaning images, handling class imbalance, augmenting data. Getting the model accuracy to a publishable level took weeks of tuning. Built a Flask web app so anyone could upload a plant photo and get instant classification with confidence scores. Presenting this at an international conference was one of the proudest moments of my life.",
+      description: "CNN-based deep learning system for automated medicinal plant species identification. Trained with TensorFlow/Keras, deployed via Flask REST API with real-time image classification and confidence scores. Published at iCREATE 2025 International Conference.",
+      tags: ["Python", "TensorFlow", "Keras", "CNN", "Flask", "REST API", "Image Processing"],
+      category: "backend",
+      video: null,
+      github: "https://github.com/zaharaCodes",
+      live: "https://github.com/zaharaCodes",
+      color: "#22c55e",
+      featured: false,
+      deployment: {
+        frontend: null,
+        backend: "Flask",
+      },
+      highlights: [
+        "CNN trained with TensorFlow & Keras",
+        "Real-time image classification API",
+        "Confidence score output per species",
+        "Published at iCREATE 2025 Conference",
+      ],
+    },
   ],
 
   skills: {
     frontend: [
       { name: "React.js", level: 90 },
       { name: "JavaScript", level: 88 },
+      { name: "TypeScript", level: 80 },
       { name: "TailwindCSS", level: 92 },
       { name: "HTML/CSS", level: 95 },
       { name: "Next.js", level: 78 },
@@ -74,21 +144,30 @@ export const info = {
       { name: "Express.js", level: 85 },
       { name: "Python", level: 75 },
       { name: "REST APIs", level: 88 },
-      { name: "GraphQL", level: 70 },
+      { name: "Socket.io", level: 82 },
+      { name: "WebRTC", level: 72 },
+      { name: "Flask", level: 70 },
     ],
     database: [
       { name: "MongoDB", level: 82 },
-      { name: "PostgreSQL", level: 78 },
+      { name: "PostgreSQL", level: 80 },
+      { name: "Prisma ORM", level: 78 },
       { name: "MySQL", level: 75 },
-      { name: "Redis", level: 72 },
       { name: "Firebase", level: 80 },
     ],
     tools: [
       { name: "Git/GitHub", level: 90 },
-      { name: "Docker", level: 78 },
-      { name: "AWS", level: 72 },
+      { name: "Docker", level: 80 },
+      { name: "Nginx", level: 72 },
       { name: "Linux", level: 80 },
       { name: "Figma", level: 70 },
+    ],
+    ai: [
+      { name: "TensorFlow", level: 75 },
+      { name: "Keras", level: 75 },
+      { name: "CNN", level: 72 },
+      { name: "Groq API", level: 85 },
+      { name: "LLaMA 3.3 70B", level: 80 },
     ],
   },
 };

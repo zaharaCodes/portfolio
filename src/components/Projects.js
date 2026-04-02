@@ -10,14 +10,20 @@ import {
   BsMicFill, BsPeopleFill,
   BsSearchHeart, BsEnvelopeCheckFill,
   BsKeyFill, BsTrainFrontFill,
-  BsCameraVideo,
+  BsCameraVideo, BsKanbanFill,
+  BsPersonCheckFill, BsClock,
+  BsHeartPulseFill, BsCameraFill,
+  BsFileEarmarkMedical, BsWifi,
+  BsFlower1, BsGraphUp,
 } from 'react-icons/bs';
-import { SiVercel, SiRender } from 'react-icons/si';
+import { SiVercel, SiRender, SiDocker } from 'react-icons/si';
+import { FiCpu } from 'react-icons/fi';
 import { info } from '../data/info';
 
 const categories = ['all', 'fullstack', 'frontend', 'backend'];
 
 const highlightIcons = {
+  // Automate AI
   "LLaMA models via Groq for real-time AI":
     <BsRobot className="text-indigo-400 flex-shrink-0" size={15} />,
   "JWT authentication & usage limits":
@@ -26,6 +32,7 @@ const highlightIcons = {
     <BsBarChartFill className="text-blue-400 flex-shrink-0" size={15} />,
   "Voice input & keyboard shortcuts":
     <BsMicFill className="text-pink-400 flex-shrink-0" size={15} />,
+  // Community Hub
   "Connects people with free local resources":
     <BsPeopleFill className="text-green-400 flex-shrink-0" size={15} />,
   "Role-based access & JWT auth":
@@ -34,14 +41,112 @@ const highlightIcons = {
     <BsSearchHeart className="text-cyan-400 flex-shrink-0" size={15} />,
   "Email notifications system":
     <BsEnvelopeCheckFill className="text-orange-400 flex-shrink-0" size={15} />,
+  // Flowspace
+  "3-role RBAC with JWT & HttpOnly cookies":
+    <BsShieldLockFill className="text-yellow-400 flex-shrink-0" size={15} />,
+  "Socket.io real-time with role-filtered emit":
+    <BsPersonCheckFill className="text-blue-400 flex-shrink-0" size={15} />,
+  "Kanban board with live presence counter":
+    <BsKanbanFill className="text-amber-400 flex-shrink-0" size={15} />,
+  "node-cron auto-flags overdue tasks hourly":
+    <BsClock className="text-red-400 flex-shrink-0" size={15} />,
+  // HealthBridge
+  "LLaMA 3.3 70B AI symptom triage":
+    <BsRobot className="text-indigo-400 flex-shrink-0" size={15} />,
+  "WebRTC peer-to-peer video consultations":
+    <BsCameraVideo className="text-pink-400 flex-shrink-0" size={15} />,
+  "Offline-first for 2G rural India":
+    <BsWifi className="text-green-400 flex-shrink-0" size={15} />,
+  "E-prescriptions & vitals tracker":
+    <BsHeartPulseFill className="text-red-400 flex-shrink-0" size={15} />,
+  // Medicinal Plant
+  "CNN trained with TensorFlow & Keras":
+    <FiCpu className="text-orange-400 flex-shrink-0" size={15} />,
+  "Real-time image classification API":
+    <BsCameraFill className="text-cyan-400 flex-shrink-0" size={15} />,
+  "Confidence score output per species":
+    <BsGraphUp className="text-green-400 flex-shrink-0" size={15} />,
+  "Published at iCREATE 2025 Conference":
+    <BsFileEarmarkMedical className="text-purple-400 flex-shrink-0" size={15} />,
 };
 
-const projectIcons = {
-  1: <BsRobot size={70} />,
-  2: <BsPeopleFill size={70} />,
+const projectVisuals = {
+  1: { icon: <BsRobot size={70} />, label: "AI SaaS Platform" },
+  2: { icon: <BsPeopleFill size={70} />, label: "Community Platform" },
+  3: { icon: <BsKanbanFill size={70} />, label: "Project Management" },
+  4: { icon: <BsHeartPulseFill size={70} />, label: "Telemedicine" },
+  5: { icon: <BsFlower1 size={70} />, label: "Deep Learning" },
 };
 
-// Single Card
+const DeploymentBadges = ({ project }) => {
+  const { deployment, color } = project;
+
+  if (deployment.frontend) {
+    return (
+      <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '18px' }}>
+        <span style={{
+          fontSize: '11px', padding: '4px 12px', borderRadius: '999px',
+          background: '#000', border: '1px solid #374151', color: 'white',
+          display: 'flex', alignItems: 'center', gap: '5px',
+        }}>
+          <SiVercel size={10} /> Frontend · {deployment.frontend}
+        </span>
+        <span style={{ color: '#4b5563', fontSize: '13px', alignSelf: 'center' }}>+</span>
+        <span style={{
+          fontSize: '11px', padding: '4px 12px', borderRadius: '999px',
+          background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.3)',
+          color: '#a78bfa', display: 'flex', alignItems: 'center', gap: '5px',
+        }}>
+          <BsTrainFrontFill size={10} /> Backend · {deployment.backend}
+        </span>
+      </div>
+    );
+  }
+
+  if (deployment.backend === 'Render') {
+    return (
+      <div style={{ marginBottom: '18px' }}>
+        <span style={{
+          fontSize: '11px', padding: '4px 12px', borderRadius: '999px',
+          background: 'rgba(99,102,241,0.1)', border: '1px solid rgba(99,102,241,0.3)',
+          color: '#818cf8', display: 'flex', alignItems: 'center', gap: '5px',
+          width: 'fit-content',
+        }}>
+          <SiRender size={10} /> Deployed on Render
+        </span>
+      </div>
+    );
+  }
+
+  if (deployment.backend?.includes('Docker')) {
+    return (
+      <div style={{ marginBottom: '18px' }}>
+        <span style={{
+          fontSize: '11px', padding: '4px 12px', borderRadius: '999px',
+          background: `${color}15`, border: `1px solid ${color}40`,
+          color: color, display: 'flex', alignItems: 'center', gap: '5px',
+          width: 'fit-content',
+        }}>
+          <SiDocker size={10} /> {deployment.backend}
+        </span>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ marginBottom: '18px' }}>
+      <span style={{
+        fontSize: '11px', padding: '4px 12px', borderRadius: '999px',
+        background: `${color}15`, border: `1px solid ${color}40`,
+        color: color, display: 'flex', alignItems: 'center', gap: '5px',
+        width: 'fit-content',
+      }}>
+        {deployment.backend}
+      </span>
+    </div>
+  );
+};
+
 const SingleProjectCard = ({
   project, index, isInView,
   hoveredId, setHoveredId,
@@ -50,6 +155,7 @@ const SingleProjectCard = ({
   const videoRef = useRef(null);
   const isHovered = hoveredId === project.id;
   const isExpanded = expandedStory === project.id;
+  const visual = projectVisuals[project.id];
 
   useEffect(() => {
     if (videoRef.current && project.video) {
@@ -75,11 +181,9 @@ const SingleProjectCard = ({
     >
       <div style={{ display: 'flex', flexDirection: 'row', minHeight: '360px' }}>
 
-        {/* LEFT VIDEO */}
+        {/* LEFT VISUAL */}
         <div style={{
-          width: '380px',
-          minWidth: '380px',
-          position: 'relative',
+          width: '380px', minWidth: '380px', position: 'relative',
           overflow: 'hidden',
           background: `linear-gradient(135deg, ${project.color}25, #0f172a)`,
           flexShrink: 0,
@@ -89,50 +193,32 @@ const SingleProjectCard = ({
               <video
                 ref={videoRef}
                 src={project.video}
-                muted
-                loop
-                autoPlay
-                playsInline
-                preload="auto"
+                muted loop autoPlay playsInline preload="auto"
                 style={{
-                  position: 'absolute',
-                  top: 0, left: 0,
+                  position: 'absolute', top: 0, left: 0,
                   width: '100%', height: '100%',
-                  objectFit: 'cover',
-                  objectPosition: 'top center',
-                  display: 'block',
+                  objectFit: 'cover', objectPosition: 'top center', display: 'block',
                 }}
               />
               {/* LIVE badge */}
               <div style={{
-                position: 'absolute',
-                top: 12, right: 12,
-                zIndex: 20,
-                display: 'flex',
-                alignItems: 'center',
-                gap: '5px',
-                padding: '4px 10px',
-                borderRadius: '999px',
-                background: 'rgba(0,0,0,0.55)',
-                border: '1px solid rgba(255,255,255,0.12)',
+                position: 'absolute', top: 12, right: 12, zIndex: 20,
+                display: 'flex', alignItems: 'center', gap: '5px',
+                padding: '4px 10px', borderRadius: '999px',
+                background: 'rgba(0,0,0,0.55)', border: '1px solid rgba(255,255,255,0.12)',
                 backdropFilter: 'blur(6px)',
               }}>
                 {[0, 1, 2].map(i => (
                   <motion.div
                     key={i}
-                    style={{
-                      width: 6, height: 6,
-                      borderRadius: '50%',
-                      background: '#ef4444',
-                    }}
+                    style={{ width: 6, height: 6, borderRadius: '50%', background: '#ef4444' }}
                     animate={{ scaleY: [1, 2.5, 1] }}
                     transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.15 }}
                   />
                 ))}
-                <span style={{
-                  color: 'white', fontSize: '11px',
-                  fontWeight: 600, marginLeft: '2px',
-                }}>LIVE</span>
+                <span style={{ color: 'white', fontSize: '11px', fontWeight: 600, marginLeft: '2px' }}>
+                  LIVE
+                </span>
               </div>
             </>
           ) : (
@@ -145,8 +231,7 @@ const SingleProjectCard = ({
                 `,
               }} />
               <div style={{
-                position: 'absolute', inset: 0,
-                opacity: 0.07,
+                position: 'absolute', inset: 0, opacity: 0.07,
                 backgroundImage: `
                   linear-gradient(${project.color} 1px, transparent 1px),
                   linear-gradient(90deg, ${project.color} 1px, transparent 1px)
@@ -156,21 +241,15 @@ const SingleProjectCard = ({
               <div style={{
                 position: 'absolute', inset: 0,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
+                flexDirection: 'column', gap: '12px',
               }}>
                 <motion.div
                   animate={{ y: [0, -14, 0], rotate: [0, 5, -5, 0] }}
                   transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
                   style={{ color: project.color, filter: `drop-shadow(0 0 24px ${project.color})` }}
                 >
-                  {projectIcons[project.id]}
+                  {visual?.icon}
                 </motion.div>
-              </div>
-              {/* No emoji - use icon instead */}
-              <div style={{
-                position: 'absolute', bottom: '16px',
-                left: 0, right: 0,
-                display: 'flex', justifyContent: 'center',
-              }}>
                 <span style={{
                   fontSize: '11px', color: '#6b7280',
                   background: 'rgba(0,0,0,0.5)',
@@ -181,6 +260,20 @@ const SingleProjectCard = ({
                   <BsCameraVideo size={11} /> Demo video coming soon
                 </span>
               </div>
+
+              {/* Research badge for project 5 */}
+              {project.id === 5 && (
+                <div style={{
+                  position: 'absolute', top: 12, left: 12, zIndex: 20,
+                  padding: '4px 10px', borderRadius: '999px',
+                  background: `${project.color}25`,
+                  border: `1px solid ${project.color}60`,
+                  color: project.color, fontSize: '11px', fontWeight: 600,
+                  display: 'flex', alignItems: 'center', gap: '5px',
+                }}>
+                  📄 Research Published
+                </div>
+              )}
             </>
           )}
         </div>
@@ -188,48 +281,11 @@ const SingleProjectCard = ({
         {/* RIGHT CONTENT */}
         <div style={{
           flex: 1, padding: '32px',
-          display: 'flex', flexDirection: 'column',
-          justifyContent: 'space-between',
+          display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
           minWidth: 0, overflowY: 'auto',
         }}>
           <div>
-            {/* Deployment badges */}
-            <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '18px' }}>
-              {project.deployment.frontend ? (
-                <>
-                  <span style={{
-                    fontSize: '11px', padding: '4px 12px',
-                    borderRadius: '999px', background: '#000',
-                    border: '1px solid #374151', color: 'white',
-                    display: 'flex', alignItems: 'center', gap: '5px',
-                  }}>
-                    <SiVercel size={10} /> Frontend · {project.deployment.frontend}
-                  </span>
-                  <span style={{ color: '#4b5563', fontSize: '13px', alignSelf: 'center' }}>+</span>
-                  <span style={{
-                    fontSize: '11px', padding: '4px 12px',
-                    borderRadius: '999px',
-                    background: 'rgba(139,92,246,0.1)',
-                    border: '1px solid rgba(139,92,246,0.3)',
-                    color: '#a78bfa',
-                    display: 'flex', alignItems: 'center', gap: '5px',
-                  }}>
-                    <BsTrainFrontFill size={10} /> Backend · {project.deployment.backend}
-                  </span>
-                </>
-              ) : (
-                <span style={{
-                  fontSize: '11px', padding: '4px 12px',
-                  borderRadius: '999px',
-                  background: 'rgba(99,102,241,0.1)',
-                  border: '1px solid rgba(99,102,241,0.3)',
-                  color: '#818cf8',
-                  display: 'flex', alignItems: 'center', gap: '5px',
-                }}>
-                  <SiRender size={10} /> Deployed on {project.deployment.backend}
-                </span>
-              )}
-            </div>
+            <DeploymentBadges project={project} />
 
             {/* Title + Buttons */}
             <div style={{
@@ -275,24 +331,19 @@ const SingleProjectCard = ({
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <FiExternalLink size={14} /> Live Demo
+                  <FiExternalLink size={14} />
+                  {project.live.includes('github') ? 'View Code' : 'Live Demo'}
                 </motion.a>
               </div>
             </div>
 
             {/* Description */}
-            <p style={{
-              color: '#9ca3af', fontSize: '14px',
-              lineHeight: 1.75, margin: '0 0 18px 0',
-            }}>
+            <p style={{ color: '#9ca3af', fontSize: '14px', lineHeight: 1.75, margin: '0 0 18px 0' }}>
               {project.description}
             </p>
 
             {/* Highlights */}
-            <div style={{
-              display: 'grid', gridTemplateColumns: '1fr 1fr',
-              gap: '8px', marginBottom: '18px',
-            }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px', marginBottom: '18px' }}>
               {project.highlights.map((h, i) => (
                 <motion.div
                   key={i}
@@ -319,8 +370,7 @@ const SingleProjectCard = ({
                 <span
                   key={tag}
                   style={{
-                    fontSize: '11px', padding: '4px 12px',
-                    borderRadius: '999px',
+                    fontSize: '11px', padding: '4px 12px', borderRadius: '999px',
                     border: `1px solid ${project.color}45`,
                     background: project.color + '12',
                     color: project.color, fontWeight: 500,
@@ -339,10 +389,8 @@ const SingleProjectCard = ({
               onClick={() => setExpandedStory(isExpanded ? null : project.id)}
               style={{
                 display: 'flex', alignItems: 'center', gap: '6px',
-                fontSize: '13px', fontWeight: 500,
-                color: project.color,
-                background: 'none', border: 'none',
-                cursor: 'pointer', padding: 0,
+                fontSize: '13px', fontWeight: 500, color: project.color,
+                background: 'none', border: 'none', cursor: 'pointer', padding: 0,
               }}
               whileHover={{ x: 4 }}
             >
@@ -362,8 +410,7 @@ const SingleProjectCard = ({
                   style={{ overflow: 'hidden' }}
                 >
                   <div style={{
-                    marginTop: '14px', padding: '18px 20px',
-                    borderRadius: '16px',
+                    marginTop: '14px', padding: '18px 20px', borderRadius: '16px',
                     background: project.color + '12',
                     borderLeft: `4px solid ${project.color}`,
                     display: 'flex', gap: '12px',
@@ -372,10 +419,7 @@ const SingleProjectCard = ({
                       style={{ color: project.color, flexShrink: 0, marginTop: '2px' }}
                       size={14}
                     />
-                    <p style={{
-                      margin: 0, color: '#d1d5db',
-                      fontSize: '13px', lineHeight: 1.8,
-                    }}>
+                    <p style={{ margin: 0, color: '#d1d5db', fontSize: '13px', lineHeight: 1.8 }}>
                       {project.story}
                     </p>
                   </div>
@@ -389,7 +433,6 @@ const SingleProjectCard = ({
   );
 };
 
-// Main Component
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [hoveredId, setHoveredId] = useState(null);
@@ -405,7 +448,6 @@ const Projects = () => {
     <section id="projects" className="py-20 px-4">
       <div className="max-w-6xl mx-auto" ref={ref}>
 
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -422,7 +464,6 @@ const Projects = () => {
             Real projects I built from scratch — real problems, real solutions
           </p>
 
-          {/* Filter */}
           <div className="flex flex-wrap justify-center gap-3">
             {categories.map(cat => (
               <motion.button
@@ -442,7 +483,6 @@ const Projects = () => {
           </div>
         </motion.div>
 
-        {/* Cards */}
         <div className="space-y-8">
           {filtered.map((project, index) => (
             <SingleProjectCard
@@ -458,7 +498,6 @@ const Projects = () => {
           ))}
         </div>
 
-        {/* CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
