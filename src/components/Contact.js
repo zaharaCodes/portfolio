@@ -16,9 +16,6 @@ const Contact = () => {
   const [status, setStatus] = useState('');
   const [sending, setSending] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
