@@ -2,9 +2,9 @@ import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import {
   SiReact, SiJavascript, SiTypescript, SiTailwindcss, SiHtml5,
-  SiNodedotjs, SiExpress, SiPython, SiFlask,
-  SiMongodb, SiPostgresql, SiFirebase, SiPrisma,
-  SiGithub, SiDocker, SiLinux,
+  SiNodedotjs, SiExpress, SiPython,
+  SiMongodb, SiPostgresql, SiFirebase,
+  SiGithub, SiDocker,
   SiTensorflow, SiSocketdotio,
 } from 'react-icons/si';
 import { FiCode, FiServer, FiDatabase, FiTool, FiCpu, FiZap } from 'react-icons/fi';
@@ -20,22 +20,18 @@ const allSkills = [
   { name: "Node.js",      icon: <SiNodedotjs />,   color: "#68A063", category: "Backend" },
   { name: "Express.js",   icon: <SiExpress />,     color: "#ffffff", category: "Backend" },
   { name: "Python",       icon: <SiPython />,      color: "#3776AB", category: "Backend" },
-  { name: "Flask",        icon: <SiFlask />,       color: "#ffffff", category: "Backend" },
   { name: "Socket.io",    icon: <SiSocketdotio />, color: "#ffffff", category: "Backend" },
   { name: "REST APIs",    icon: <FiCode />,        color: "#FF6B6B", category: "Backend" },
   { name: "WebRTC",       icon: <FiZap />,         color: "#FF9900", category: "Backend" },
   // Database
   { name: "MongoDB",      icon: <SiMongodb />,     color: "#47A248", category: "Database" },
   { name: "PostgreSQL",   icon: <SiPostgresql />,  color: "#336791", category: "Database" },
-  { name: "Prisma ORM",   icon: <SiPrisma />,      color: "#ffffff", category: "Database" },
   { name: "Firebase",     icon: <SiFirebase />,    color: "#FFCA28", category: "Database" },
   // DevOps
   { name: "Git/GitHub",   icon: <SiGithub />,      color: "#ffffff", category: "DevOps" },
   { name: "Docker",       icon: <SiDocker />,      color: "#2496ED", category: "DevOps" },
-  { name: "Linux",        icon: <SiLinux />,       color: "#FCC624", category: "DevOps" },
   // AI/ML
   { name: "TensorFlow",   icon: <SiTensorflow />,  color: "#FF6F00", category: "AI/ML" },
-  { name: "Keras",        icon: <FiCpu />,         color: "#D00000", category: "AI/ML" },
   { name: "CNN",          icon: <FiCpu />,         color: "#a78bfa", category: "AI/ML" },
   { name: "Groq API",     icon: <FiZap />,         color: "#f59e0b", category: "AI/ML" },
   { name: "LLaMA 3.3",    icon: <FiServer />,      color: "#ec4899", category: "AI/ML" },
@@ -64,9 +60,8 @@ const Skills = () => {
 
   return (
     <section id="skills" className="py-20 px-4 bg-gray-900/30">
-      <div className="max-w-6xl mx-auto" ref={ref}>
+      <div className="max-w-5xl mx-auto" ref={ref}>
 
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -101,10 +96,10 @@ const Skills = () => {
                 onClick={() => setActiveFilter(filter)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all border ${
+                className={`flex items-center gap-2 px-5 py-2 rounded-full text-sm font-medium transition-all border ${
                   isActive
-                    ? 'text-white border-transparent shadow-lg'
-                    : 'bg-gray-800/80 text-gray-400 border-gray-700 hover:text-white hover:border-gray-500'
+                    ? 'text-white border-transparent'
+                    : 'bg-gray-800/80 text-gray-400 border-gray-700 hover:text-white'
                 }`}
                 style={isActive ? {
                   background: `linear-gradient(135deg, ${meta.color}33, ${meta.color}55)`,
@@ -113,17 +108,16 @@ const Skills = () => {
                   boxShadow: `0 4px 20px ${meta.color}30`,
                 } : {}}
               >
-                <span style={isActive ? { color: meta.color } : {}}>{meta.icon}</span>
                 {filter}
               </motion.button>
             );
           })}
         </motion.div>
 
-        {/* Skills Icon Grid */}
+        {/* Skills Grid */}
         <motion.div
           layout
-          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4"
+          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4"
         >
           {filtered.map((skill, i) => (
             <motion.div
@@ -131,65 +125,35 @@ const Skills = () => {
               layout
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.3, delay: i * 0.04 }}
               onMouseEnter={() => setHoveredSkill(skill.name)}
               onMouseLeave={() => setHoveredSkill(null)}
-              whileHover={{ scale: 1.12, y: -6 }}
+              whileHover={{ scale: 1.1, y: -5 }}
               className="flex flex-col items-center justify-center p-4 rounded-2xl bg-gray-900 border border-gray-800 cursor-default transition-all"
               style={{
                 borderColor: hoveredSkill === skill.name ? skill.color + '60' : '',
-                boxShadow: hoveredSkill === skill.name
-                  ? `0 8px 30px ${skill.color}25` : '',
+                boxShadow: hoveredSkill === skill.name ? `0 8px 30px ${skill.color}25` : '',
                 background: hoveredSkill === skill.name
                   ? `linear-gradient(135deg, ${skill.color}10, #111827)` : '',
               }}
             >
               <div
-                className="text-3xl mb-3 transition-all duration-300"
+                className="text-3xl mb-2 transition-all duration-300"
                 style={{
                   color: hoveredSkill === skill.name ? skill.color : '#6b7280',
                   filter: hoveredSkill === skill.name
-                    ? `drop-shadow(0 0 10px ${skill.color}80)` : 'none',
+                    ? `drop-shadow(0 0 8px ${skill.color}80)` : 'none',
                 }}
               >
                 {skill.icon}
               </div>
               <span
-                className="text-xs text-center font-medium transition-colors duration-300 leading-tight"
-                style={{
-                  color: hoveredSkill === skill.name ? skill.color : '#9ca3af',
-                }}
+                className="text-xs text-center font-medium leading-tight transition-colors duration-300"
+                style={{ color: hoveredSkill === skill.name ? skill.color : '#9ca3af' }}
               >
                 {skill.name}
               </span>
             </motion.div>
-          ))}
-        </motion.div>
-
-        {/* Bottom Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-14 grid grid-cols-2 md:grid-cols-5 gap-4"
-        >
-          {[
-            { label: "Frontend", count: 5, color: "#61DAFB" },
-            { label: "Backend",  count: 7, color: "#a78bfa" },
-            { label: "Database", count: 4, color: "#47A248" },
-            { label: "DevOps",   count: 3, color: "#f97316" },
-            { label: "AI/ML",    count: 5, color: "#ec4899" },
-          ].map((stat) => (
-            <div
-              key={stat.label}
-              className="text-center p-4 rounded-xl bg-gray-900/50 border border-gray-800"
-            >
-              <div className="text-2xl font-bold mb-1" style={{ color: stat.color }}>
-                {stat.count}
-              </div>
-              <div className="text-gray-500 text-xs">{stat.label} tools</div>
-            </div>
           ))}
         </motion.div>
 

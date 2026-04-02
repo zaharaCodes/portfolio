@@ -6,8 +6,8 @@ const funFacts = [
   { icon: "🗺️", label: "Traveller", desc: "Always planning the next escape" },
   { icon: "🌄", label: "Explorer", desc: "Sunsets hit different from new places" },
   { icon: "🎒", label: "Backpacker", desc: "One bag. Zero regrets." },
-  { icon: "🍵", label: "Tea Lover", desc: "Not coffee. Never coffee. 🚫☕" },
-  { icon: "🎧", label: "Music", desc: "Lo-fi beats = instant focus mode" },
+  { icon: "🍵", label: "Tea Lover", desc: "Not coffee. Never coffee." },
+  { icon: "🎧", label: "Music", desc: "Lo-fi beats — instant focus mode" },
   { icon: "🦉", label: "Night Owl", desc: "My brain boots up at 11 PM" },
 ];
 
@@ -20,7 +20,6 @@ const About = () => {
     <section id="about" className="py-20 px-4">
       <div className="max-w-6xl mx-auto" ref={ref}>
 
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -67,7 +66,6 @@ const About = () => {
             transition={{ duration: 0.4 }}
             className="grid md:grid-cols-2 gap-12 items-center"
           >
-            {/* Left */}
             <div>
               <p className="text-gray-300 text-lg leading-relaxed mb-8">
                 {info.about}
@@ -84,7 +82,6 @@ const About = () => {
               </div>
             </div>
 
-            {/* Right */}
             <div className="grid grid-cols-2 gap-4">
               {[
                 { value: "5+", label: "Projects Built", color: "from-blue-500 to-cyan-500" },
@@ -105,7 +102,7 @@ const About = () => {
                 </motion.div>
               ))}
 
-              {/* Fun card instead of boring "currently working" */}
+              {/* Internship card — clean, no emoji */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -113,21 +110,18 @@ const About = () => {
                 whileHover={{ scale: 1.02, y: -4 }}
                 className="col-span-2 p-5 rounded-2xl bg-gray-900 border border-gray-800 hover:border-blue-500/30 transition-all"
               >
-                <div className="flex items-start gap-4">
-                  <div className="text-3xl">🚀</div>
-                  <div>
-                    <p className="text-white font-semibold text-sm">
-                      Shipping code at Vrishanksoft
-                    </p>
-                    <p className="text-gray-500 text-xs mt-1">
-                      Building real products · agile team · Feb 2026 – Present
-                    </p>
-                    <div className="flex items-center gap-2 mt-2">
-                      <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                      <span className="text-green-400 text-xs font-medium">Active & building</span>
-                    </div>
-                  </div>
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                  <span className="text-green-400 text-xs font-medium tracking-wide uppercase">
+                    Active
+                  </span>
                 </div>
+                <p className="text-white font-semibold text-sm">
+                  Full Stack Developer Intern — Vrishanksoft
+                </p>
+                <p className="text-gray-500 text-xs mt-1">
+                  Feb 2026 – Present
+                </p>
               </motion.div>
             </div>
           </motion.div>
@@ -146,7 +140,7 @@ const About = () => {
                 When I'm not pushing code, you'll find me somewhere new —
                 exploring a city I've never been to, hunting for the best local food,
                 or watching sunsets from a random rooftop.
-                Travelling recharges me the same way solving a hard bug does. ✨
+                Travelling recharges me the same way solving a hard bug does.
               </p>
             </div>
 
@@ -180,7 +174,7 @@ const About = () => {
                   "The world is a book, and those who do not travel read only one page."
                 </p>
                 <p className="text-gray-500 text-xs mt-2">
-                  — Also me, sipping tea between deployments 🍵
+                  — Also me, sipping tea between deployments
                 </p>
               </div>
             </motion.div>
