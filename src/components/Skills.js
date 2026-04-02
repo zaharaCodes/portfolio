@@ -1,48 +1,44 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import {
-  SiReact, SiJavascript, SiTypescript, SiTailwindcss, SiHtml5, SiNextdotjs,
+  SiReact, SiJavascript, SiTypescript, SiTailwindcss, SiHtml5,
   SiNodedotjs, SiExpress, SiPython, SiFlask,
-  SiMongodb, SiPostgresql, SiMysql, SiFirebase, SiPrisma,
-  SiGithub, SiDocker, SiNginx, SiLinux, SiFigma,
-  SiTensorflow, SiKeras, SiSocketdotio,
+  SiMongodb, SiPostgresql, SiFirebase, SiPrisma,
+  SiGithub, SiDocker, SiLinux,
+  SiTensorflow, SiSocketdotio,
 } from 'react-icons/si';
 import { FiCode, FiServer, FiDatabase, FiTool, FiCpu, FiZap } from 'react-icons/fi';
 
 const allSkills = [
   // Frontend
-  { name: "React.js", icon: <SiReact />, color: "#61DAFB", category: "Frontend" },
-  { name: "JavaScript", icon: <SiJavascript />, color: "#F7DF1E", category: "Frontend" },
-  { name: "TypeScript", icon: <SiTypescript />, color: "#3178C6", category: "Frontend" },
+  { name: "React.js",     icon: <SiReact />,       color: "#61DAFB", category: "Frontend" },
+  { name: "JavaScript",   icon: <SiJavascript />,  color: "#F7DF1E", category: "Frontend" },
+  { name: "TypeScript",   icon: <SiTypescript />,  color: "#3178C6", category: "Frontend" },
   { name: "Tailwind CSS", icon: <SiTailwindcss />, color: "#38BDF8", category: "Frontend" },
-  { name: "HTML/CSS", icon: <SiHtml5 />, color: "#E34F26", category: "Frontend" },
-  { name: "Next.js", icon: <SiNextdotjs />, color: "#ffffff", category: "Frontend" },
+  { name: "HTML/CSS",     icon: <SiHtml5 />,       color: "#E34F26", category: "Frontend" },
   // Backend
-  { name: "Node.js", icon: <SiNodedotjs />, color: "#68A063", category: "Backend" },
-  { name: "Express.js", icon: <SiExpress />, color: "#ffffff", category: "Backend" },
-  { name: "Python", icon: <SiPython />, color: "#3776AB", category: "Backend" },
-  { name: "Flask", icon: <SiFlask />, color: "#ffffff", category: "Backend" },
-  { name: "Socket.io", icon: <SiSocketdotio />, color: "#ffffff", category: "Backend" },
-  { name: "REST APIs", icon: <FiCode />, color: "#FF6B6B", category: "Backend" },
-  { name: "WebRTC", icon: <FiZap />, color: "#FF9900", category: "Backend" },
+  { name: "Node.js",      icon: <SiNodedotjs />,   color: "#68A063", category: "Backend" },
+  { name: "Express.js",   icon: <SiExpress />,     color: "#ffffff", category: "Backend" },
+  { name: "Python",       icon: <SiPython />,      color: "#3776AB", category: "Backend" },
+  { name: "Flask",        icon: <SiFlask />,       color: "#ffffff", category: "Backend" },
+  { name: "Socket.io",    icon: <SiSocketdotio />, color: "#ffffff", category: "Backend" },
+  { name: "REST APIs",    icon: <FiCode />,        color: "#FF6B6B", category: "Backend" },
+  { name: "WebRTC",       icon: <FiZap />,         color: "#FF9900", category: "Backend" },
   // Database
-  { name: "MongoDB", icon: <SiMongodb />, color: "#47A248", category: "Database" },
-  { name: "PostgreSQL", icon: <SiPostgresql />, color: "#336791", category: "Database" },
-  { name: "Prisma ORM", icon: <SiPrisma />, color: "#ffffff", category: "Database" },
-  { name: "MySQL", icon: <SiMysql />, color: "#4479A1", category: "Database" },
-  { name: "Firebase", icon: <SiFirebase />, color: "#FFCA28", category: "Database" },
-  // DevOps & Tools
-  { name: "Git/GitHub", icon: <SiGithub />, color: "#ffffff", category: "DevOps" },
-  { name: "Docker", icon: <SiDocker />, color: "#2496ED", category: "DevOps" },
-  { name: "Nginx", icon: <SiNginx />, color: "#009900", category: "DevOps" },
-  { name: "Linux", icon: <SiLinux />, color: "#FCC624", category: "DevOps" },
-  { name: "Figma", icon: <SiFigma />, color: "#F24E1E", category: "DevOps" },
-  // AI / ML
-  { name: "TensorFlow", icon: <SiTensorflow />, color: "#FF6F00", category: "AI/ML" },
-  { name: "Keras", icon: <SiKeras />, color: "#D00000", category: "AI/ML" },
-  { name: "CNN", icon: <FiCpu />, color: "#a78bfa", category: "AI/ML" },
-  { name: "Groq API", icon: <FiZap />, color: "#f59e0b", category: "AI/ML" },
-  { name: "LLaMA 3.3 70B", icon: <FiServer />, color: "#ec4899", category: "AI/ML" },
+  { name: "MongoDB",      icon: <SiMongodb />,     color: "#47A248", category: "Database" },
+  { name: "PostgreSQL",   icon: <SiPostgresql />,  color: "#336791", category: "Database" },
+  { name: "Prisma ORM",   icon: <SiPrisma />,      color: "#ffffff", category: "Database" },
+  { name: "Firebase",     icon: <SiFirebase />,    color: "#FFCA28", category: "Database" },
+  // DevOps
+  { name: "Git/GitHub",   icon: <SiGithub />,      color: "#ffffff", category: "DevOps" },
+  { name: "Docker",       icon: <SiDocker />,      color: "#2496ED", category: "DevOps" },
+  { name: "Linux",        icon: <SiLinux />,       color: "#FCC624", category: "DevOps" },
+  // AI/ML
+  { name: "TensorFlow",   icon: <SiTensorflow />,  color: "#FF6F00", category: "AI/ML" },
+  { name: "Keras",        icon: <FiCpu />,         color: "#D00000", category: "AI/ML" },
+  { name: "CNN",          icon: <FiCpu />,         color: "#a78bfa", category: "AI/ML" },
+  { name: "Groq API",     icon: <FiZap />,         color: "#f59e0b", category: "AI/ML" },
+  { name: "LLaMA 3.3",    icon: <FiServer />,      color: "#ec4899", category: "AI/ML" },
 ];
 
 const categoryMeta = {
@@ -124,7 +120,7 @@ const Skills = () => {
           })}
         </motion.div>
 
-        {/* Skills Grid — Icon Cards */}
+        {/* Skills Icon Grid */}
         <motion.div
           layout
           className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-4"
@@ -140,28 +136,25 @@ const Skills = () => {
               onMouseEnter={() => setHoveredSkill(skill.name)}
               onMouseLeave={() => setHoveredSkill(null)}
               whileHover={{ scale: 1.12, y: -6 }}
-              className="flex flex-col items-center justify-center p-4 rounded-2xl bg-gray-900 border border-gray-800 cursor-default transition-all group"
+              className="flex flex-col items-center justify-center p-4 rounded-2xl bg-gray-900 border border-gray-800 cursor-default transition-all"
               style={{
                 borderColor: hoveredSkill === skill.name ? skill.color + '60' : '',
-                boxShadow: hoveredSkill === skill.name ? `0 8px 30px ${skill.color}25` : '',
+                boxShadow: hoveredSkill === skill.name
+                  ? `0 8px 30px ${skill.color}25` : '',
                 background: hoveredSkill === skill.name
-                  ? `linear-gradient(135deg, ${skill.color}10, #111827)`
-                  : '',
+                  ? `linear-gradient(135deg, ${skill.color}10, #111827)` : '',
               }}
             >
-              {/* Icon */}
               <div
                 className="text-3xl mb-3 transition-all duration-300"
                 style={{
                   color: hoveredSkill === skill.name ? skill.color : '#6b7280',
                   filter: hoveredSkill === skill.name
-                    ? `drop-shadow(0 0 10px ${skill.color}80)`
-                    : 'none',
+                    ? `drop-shadow(0 0 10px ${skill.color}80)` : 'none',
                 }}
               >
                 {skill.icon}
               </div>
-              {/* Name */}
               <span
                 className="text-xs text-center font-medium transition-colors duration-300 leading-tight"
                 style={{
@@ -174,7 +167,7 @@ const Skills = () => {
           ))}
         </motion.div>
 
-        {/* Stats bar */}
+        {/* Bottom Stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -182,20 +175,17 @@ const Skills = () => {
           className="mt-14 grid grid-cols-2 md:grid-cols-5 gap-4"
         >
           {[
-            { label: "Frontend", count: 6, color: "#61DAFB" },
-            { label: "Backend", count: 7, color: "#a78bfa" },
-            { label: "Database", count: 5, color: "#47A248" },
-            { label: "DevOps", count: 5, color: "#f97316" },
-            { label: "AI/ML", count: 5, color: "#ec4899" },
+            { label: "Frontend", count: 5, color: "#61DAFB" },
+            { label: "Backend",  count: 7, color: "#a78bfa" },
+            { label: "Database", count: 4, color: "#47A248" },
+            { label: "DevOps",   count: 3, color: "#f97316" },
+            { label: "AI/ML",    count: 5, color: "#ec4899" },
           ].map((stat) => (
             <div
               key={stat.label}
               className="text-center p-4 rounded-xl bg-gray-900/50 border border-gray-800"
             >
-              <div
-                className="text-2xl font-bold mb-1"
-                style={{ color: stat.color }}
-              >
+              <div className="text-2xl font-bold mb-1" style={{ color: stat.color }}>
                 {stat.count}
               </div>
               <div className="text-gray-500 text-xs">{stat.label} tools</div>

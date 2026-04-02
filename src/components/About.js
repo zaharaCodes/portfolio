@@ -3,12 +3,12 @@ import { motion, useInView } from 'framer-motion';
 import { info } from '../data/info';
 
 const funFacts = [
-  { icon: "🌍", label: "Traveller", desc: "Always planning the next trip" },
-  { icon: "🏔️", label: "Explorer", desc: "New places, new perspectives" },
-  { icon: "🎒", label: "Backpacker", desc: "Light luggage, big adventures" },
-  { icon: "☕", label: "Coffee Lover", desc: "Fuelled by caffeine & curiosity" },
-  { icon: "🎧", label: "Music", desc: "Lo-fi beats while coding" },
-  { icon: "🌙", label: "Night Owl", desc: "Best ideas after midnight" },
+  { icon: "🗺️", label: "Traveller", desc: "Always planning the next escape" },
+  { icon: "🚂", label: "Explorer", desc: "Trains > flights, always" },
+  { icon: "🎒", label: "Backpacker", desc: "One bag. Zero regrets." },
+  { icon: "🍵", label: "Tea Lover", desc: "Not coffee. Never coffee. 🚫☕" },
+  { icon: "🎧", label: "Music", desc: "Lo-fi beats = instant focus mode" },
+  { icon: "🦉", label: "Night Owl", desc: "My brain boots up at 11 PM" },
 ];
 
 const About = () => {
@@ -36,7 +36,7 @@ const About = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full" />
         </motion.div>
 
-        {/* Tab Switcher — only Story & Beyond Code */}
+        {/* Tab Switcher */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -72,13 +72,6 @@ const About = () => {
               <p className="text-gray-300 text-lg leading-relaxed mb-5">
                 {info.about}
               </p>
-              <p className="text-gray-400 text-base leading-relaxed mb-8">
-                Currently interning at{' '}
-                <span className="text-blue-400 font-medium">Vrishanksoft</span>,
-                building production features in an agile team. Final year CSE student at{' '}
-                <span className="text-cyan-400 font-medium">Malnad College of Engineering</span>,
-                graduating 2026.
-              </p>
               <div className="flex flex-wrap gap-3">
                 {['Problem Solver', 'Team Player', 'Fast Learner', 'Published Researcher', 'Open Source'].map((tag) => (
                   <span
@@ -91,7 +84,7 @@ const About = () => {
               </div>
             </div>
 
-            {/* Right — 2 stat cards + internship card */}
+            {/* Right — Stats */}
             <div className="grid grid-cols-2 gap-4">
               {[
                 { value: "5+", label: "Projects Built", color: "from-blue-500 to-cyan-500" },
@@ -112,7 +105,7 @@ const About = () => {
                 </motion.div>
               ))}
 
-              {/* Internship card — full width */}
+              {/* Internship card */}
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={isInView ? { opacity: 1, scale: 1 } : {}}
@@ -167,7 +160,7 @@ const About = () => {
               ))}
             </div>
 
-            {/* Travel quote */}
+            {/* Quote */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -178,7 +171,9 @@ const About = () => {
                 <p className="text-gray-300 text-base italic">
                   "The world is a book, and those who do not travel read only one page."
                 </p>
-                <p className="text-gray-500 text-xs mt-2">— Also me, between deployments 🚀</p>
+                <p className="text-gray-500 text-xs mt-2">
+                  — Also me, sipping tea between deployments 🍵
+                </p>
               </div>
             </motion.div>
           </motion.div>
