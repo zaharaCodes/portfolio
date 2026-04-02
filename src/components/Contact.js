@@ -197,7 +197,7 @@ const Contact = () => {
                   className="p-4 rounded-xl bg-green-500/15 border border-green-500/30 text-green-400 text-sm flex items-center gap-2"
                 >
                   <FiCheckCircle size={16} />
-                  Message sent! I'll get back to you soon 🚀
+                  Message sent! I'll get back to you soon 
                 </motion.div>
               )}
 
